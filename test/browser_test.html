@@ -1,0 +1,32 @@
+<html>
+<head>
+  <title>Testing Mortgage javascript library</title>
+  <script src="../mortgage.js"></script>
+  <script src="../jquery-3.4.1.min.js"></script>
+  <script src="../myexpect.js"></script>
+</head>
+  <body>
+    <h1>Test results</h1>
+    <pre id="results"></pre>
+    <script>
+    test('adds 1 + 2 to equal 3', () => {
+      expect(1 + 2).toBe(3);
+    });
+    test('payment on 100 at 0.05 at 30 years', () => {
+      pmt = paymentCalc(100, 0.05, 12, 360)
+      expect(Math.round(pmt*100)/100).toBe(0.53)
+      expect(Math.round(pmt*360)).toBe(191)
+    })
+    test('over payment 100,000 at 0.05 at 30 years', () => {
+      info = paymentCalcWithOver(100000, 0.05, 12, 360, 100)
+      expect(info["original"]["pmt"]).toBeCloseTo(530, 1)
+      expect(info["original"]["total"]).toBeCloseTo(191000, -3)
+      let newi = info["new"]
+      expect(newi["pmt"]).toBeCloseTo(630, 1)
+      expect(newi["total"]).toBeCloseTo(161198, 0)
+      expect(newi['npmts']).toBe(256)
+      expect(info["savings"]).toBeCloseTo(29621, 0)
+    })
+    </script>
+  </body>
+</html>
