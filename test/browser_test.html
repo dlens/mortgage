@@ -27,6 +27,13 @@
       expect(newi['npmts']).toBe(256)
       expect(info["savings"]).toBeCloseTo(29621, 0)
     })
+    test('sigdigits', () => {
+      expect(sigdigits(987, 2)).toBe(990)
+      expect(sigdigits(987, 3)).toBe(987)
+      expect(sigdigits(1.234, 2)).toBe(1.2)
+      expect(sigdigits(0.01234, 1)).toBe(0.01)
+      expect(sigdigits(0.01234, 2)).toBe(0.012)
+    })
     </script>
   </body>
 </html>

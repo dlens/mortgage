@@ -52,3 +52,18 @@ function paymentCalcWithOver(A, r, k, N, over_amt) {
       "savings": (pmt*N - total_paid)
   }
 }
+
+
+function sigdigits(number, digits) {
+  //First convert number to a mantissa, i.e. 0.99999999 to 0.1000000000
+  let ndigits_after_decimal = Math.ceil(Math.log10(number));
+  if (ndigits_after_decimal > digits) {
+    //We are truncating before the decimal, this is easy
+    return Number(number.toPrecision(digits)).toFixed(0)
+  } else if (ndigits_after_decimal == digits) {
+    //We have nothing to truncate
+    return number
+  } else {
+    return number.toFixed(digits-ndigits_after_decimal)
+  }
+}
