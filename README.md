@@ -1,6 +1,7 @@
 # Mortgage Savings Calculator
 
-[Mortgage Savings Calculator](calculator.html): How much many can you save by paying a bit more on each payment?  A surprising amount!
+* [Mortgage Savings Calculator](calculator.html): How much many can you save by paying a bit more on each payment?  A surprising amount!
+* [Simpler view of the calculator](calculatorv2.html): This is a simpler view of the calculator.  It is the same calculation though.
 
 # Information
 * In [MortgageExamples.ipynb](MortgageExamples.ipynb) we have the mathematical explanations and formula derivations.  Additionally there is some Python code that performs the calculation.
