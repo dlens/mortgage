@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/css/bootstrap-slider.min.css">
+    <link rel="stylesheet" href="calculator.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.min.js"></script>
+    <script src="mortgage.js"></script>
+    <title>Mortgage Paydown</title>
+  </head>
+  <body>
+    <h1>Mortgage Paydown Benefits</h1>
+    <hr/>
+    <div>
+      <table >
+        <tr><th class="label" style="min-width:200px">Mortgage Loan Amount</th><td/><th class="label">Interest Rate</th></tr>
+        <tr>
+          <td><input size="8" type="number" id="mortgage" value="250000" onchange="updater();"/></td><td>
+          <td><input size="4" type="number" id="rate" value="5" onchange="updater();"></td>
+        </tr>
+      </table>
+      <p/>
+      <div class="paylabel">If you pay <span id="extra_amount">$0</span> extra a month</div>
+      <p/>
+      <input id="extra" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="750"
+      data-slider-step="10" data-slider-value="25"
+      data-slider-ticks-labels='["$0", "$250", "$500", "$750"]'
+      onchange="updater();"/>
+      <p/>
+      <div class="resultlabel">You save <span id="total_diff"></span> and</div>
+      <div class="resultlabel"><span id="time_diff"></span> of payments</div>
+    <!--Now calculations-->
+    <script>
+      $("#extra").slider({
+	       tooltip: 'always',
+         ticks: [0, 250, 500, 750],
+         ticks_labels: ['$0', '$250', '$500', '$750'],
+
+      });
+      //The updater
+      function updater() {
+        let money_digits = 3
+        let time_digits = 3
+        let A = Number($("#mortgage").val())
+        let r = Number($("#rate").val()/100)
+        let k = 12;
+        let N = 360;
+        let extra = Number($("#extra").val());
+        let pmt_info = paymentCalcWithOver(A, r, k, N, extra);
+        let total_before = sigdigits(pmt_info["original"]["total"], money_digits);
+        let total_after = sigdigits(pmt_info["new"]["total"], money_digits);
+        let total_diff = total_before - total_after;
+        let time_before_months = pmt_info["original"]["npmts"]
+        let time_after_months = pmt_info["new"]["npmts"]
+
+        let time_before_years = sigdigits(time_before_months / 12, time_digits)
+        let time_after_years = sigdigits(time_after_months / 12, time_digits)
+        let time_diff_years = (time_before_years - time_after_years);
+        //Update the fields
+        $("#time_before").html(time_before_years+" years")
+        $("#time_after").html(time_after_years+" years")
+        $("#time_diff").html(time_diff_years.toFixed(1)+" years")
+        $("#extra_amount").html("$"+extra);
+        $("#total_before").html("$"+total_before);
+        $("#total_after").html("$"+total_after);
+        $("#total_diff").html("$"+total_diff.toLocaleString());
+        console.log("Mortgage="+A+" rate="+r+" extra="+extra)
+      }
+
+      updater()
+    </script>
+    <!--
+    <script src="https://spreadsheets.google.com/feeds/cells/1jxuBHUYA8Jy5iSRx2PZ7lNg0Ag2gf-cC63LoCCru-j4/od6/public/values?alt=json-in-script&callback=myCallback"></script>
+  -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    </body>
+</html>
