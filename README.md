@@ -1,8 +1,7 @@
 # Mortgage Savings Calculator
 
-* [Mortgage Savings Calculator](calculator.html): How much many can you save by paying a bit more on each payment?  A surprising amount!
-* [Simpler view of the calculator](calculatorv2.html): This is a simpler view of the calculator.  It is the same calculation though.
-* [Full details](calculatorfull.html): Calculator with most details included.
+* [Mortgage savings calculator](calculatorv2.html): A concise mortgage savings calculator.
+* [Calculator with full details](calculatorfull.html): Calculator with a full details section included at the end.
 
 # What is this all about?
 Small strategic changes can have long term consequences.  The mortgage savings
@@ -22,8 +21,9 @@ submit feedback at [our github bug page](https://github.com/dlens/mortgage/issue
 
 # Information
 * In [MortgageExamples.ipynb](MortgageExamples.ipynb) we have the mathematical explanations and formula derivations.  Additionally there is some Python code that performs the calculation.
-* The code for the [calculator.html](calculator.html) app is organized as follows:
+* The code for the [calculator2.html](calculator2.html) app is organized as follows:
   * [mortgage.js](mortgage.js): javascript calculation code
   * [myexpect.js](myexpect.js): a simple unit testing framework I created for other projects to allow a poor man's version of unit testing that can be run in a browser.
   * [test/browser_test.html](test/browser_test.html): The actual unit tests that can be run in any browser.
   * [calculator.css](calculator.css): The style sheet for the calculator app.
+* [Earlier version of the mortgage savings calculator](calculator.html): This was the initial version of the mortgage savings calculator.
