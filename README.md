@@ -2,6 +2,7 @@
 
 * [Mortgage Savings Calculator](calculator.html): How much many can you save by paying a bit more on each payment?  A surprising amount!
 * [Simpler view of the calculator](calculatorv2.html): This is a simpler view of the calculator.  It is the same calculation though.
+* [Full details](calculatorfull.html): Calculator with most details included.
 
 # What is this all about?
 Small strategic changes can have long term consequences.  The mortgage savings
@@ -12,7 +13,7 @@ nearly $30,000** over the life of then loan, and **saves you
 8 years of payments**.
 
 Similarly, seemingly small strategic changes in your planning can have surprising
-long term effects to your bottom line.  The algorithms we develop at 
+long term effects to your bottom line.  The algorithms we develop at
 Decision Lens surface these options quickly and effectively.  We can help you
 find the planning changes needed to reach your goals and desired results.
 
